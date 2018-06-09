@@ -1,0 +1,2115 @@
+
+
+Started GET "/" for 192.168.0.134 at 2018-06-09 21:40:58 +0900
+
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+	bin/rake db:migrate RAILS_ENV=development
+
+):
+  activerecord (4.2.10) lib/active_record/migration.rb:392:in `check_pending!'
+  activerecord (4.2.10) lib/active_record/migration.rb:373:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.10) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.10) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.10) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.10) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.10) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.10) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/application.rb:165:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  rack (1.6.10) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.10) lib/rack/handler/webrick.rb:88:in `service'
+  /usr/local/rbenv/versions/2.5.1/lib/ruby/2.5.0/webrick/httpserver.rb:140:in `service'
+  /usr/local/rbenv/versions/2.5.1/lib/ruby/2.5.0/webrick/httpserver.rb:96:in `run'
+  /usr/local/rbenv/versions/2.5.1/lib/ruby/2.5.0/webrick/server.rb:307:in `block in start_thread'
+
+
+  Rendered /home/rails/sample/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.7ms)
+  Rendered /home/rails/sample/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /home/rails/sample/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.9ms)
+  Rendered /home/rails/sample/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (21.6ms)
+  [1m[36m (3.4ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (3.1ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to SorceryCore (20141122074803)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/rails/sample/tsubuyaki_22_nov/db/migrate/20141122074803_sorcery_core.rb:8)
+  [1m[35m (0.2ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "crypted_password" varchar NOT NULL, "salt" varchar NOT NULL, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.2ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20141122074803"]]
+  [1m[36m (3.1ms)[0m  [1mcommit transaction[0m
+Migrating to AddNameAndScreenNameAndBioToUsers (20141122075721)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "name" varchar[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "users" ADD "screen_name" varchar
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "users" ADD "bio" varchar[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20141122075721"]]
+  [1m[36m (2.9ms)[0m  [1mcommit transaction[0m
+Migrating to CreateTweets (20141123061956)
+  [1m[35m (0.0ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/rails/sample/tsubuyaki_22_nov/db/migrate/20141123061956_create_tweets.rb:7)
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "tweets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "content" varchar, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_tweets_on_user_id" ON "tweets" ("user_id")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_tweets_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_tweets_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_tweets_on_created_at" ON "tweets" ("created_at")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141123061956"]]
+  [1m[35m (2.8ms)[0m  commit transaction
+Migrating to CreateFavorites (20141123081706)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/rails/sample/tsubuyaki_22_nov/db/migrate/20141123081706_create_favorites.rb:7)
+  [1m[35m (0.2ms)[0m  CREATE TABLE "favorites" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "tweet_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_favorites_on_user_id" ON "favorites" ("user_id")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_favorites_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_favorites_on_user_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_favorites_on_tweet_id" ON "favorites" ("tweet_id")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_favorites_on_tweet_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_favorites_on_tweet_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_favorites_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_favorites_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_favorites_on_created_at" ON "favorites" ("created_at")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141123081706"]]
+  [1m[35m (3.0ms)[0m  commit transaction
+Migrating to CreateFollows (20141123090723)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/rails/sample/tsubuyaki_22_nov/db/migrate/20141123090723_create_follows.rb:7)
+  [1m[35m (0.2ms)[0m  CREATE TABLE "follows" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "follower_id" integer, "inverse_follower_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_follows_on_follower_id" ON "follows" ("follower_id")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_follows_on_follower_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_follows_on_follower_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_follows_on_inverse_follower_id" ON "follows" ("inverse_follower_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20141123090723"]]
+  [1m[36m (3.3ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_favorites_on_created_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_favorites_on_created_at' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_favorites_on_tweet_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_favorites_on_tweet_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_favorites_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_favorites_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_follows_on_inverse_follower_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_follows_on_inverse_follower_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_follows_on_follower_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_follows_on_follower_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_tweets_on_created_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_tweets_on_created_at' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_tweets_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_tweets_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+
+
+Started GET "/" for 192.168.0.134 at 2018-06-09 21:43:54 +0900
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by RegistrationsController#new as HTML
+  Rendered registrations/new.html.haml within layouts/registrations (16.8ms)
+WARNING on line 44 of /home/rails/sample/tsubuyaki_22_nov/app/assets/stylesheets/application.css.sass:
+This selector doesn't have any properties and will not be rendered.
+
+WARNING on line 80 of /home/rails/sample/tsubuyaki_22_nov/app/assets/stylesheets/application.css.sass:
+This selector doesn't have any properties and will not be rendered.
+
+Completed 200 OK in 1441ms (Views: 1415.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 21:43:56 +0900
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 21:43:56 +0900
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 21:43:56 +0900
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.0.134 at 2018-06-09 21:43:56 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 21:43:56 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.0.134 at 2018-06-09 21:43:56 +0900
+
+
+Started GET "/assets/turbolinks.js?body=1" for 192.168.0.134 at 2018-06-09 21:43:56 +0900
+
+
+Started GET "/assets/registrations.js?body=1" for 192.168.0.134 at 2018-06-09 21:43:56 +0900
+
+
+Started GET "/assets/sessions.js?body=1" for 192.168.0.134 at 2018-06-09 21:43:56 +0900
+
+
+Started GET "/assets/settings.js?body=1" for 192.168.0.134 at 2018-06-09 21:43:56 +0900
+
+
+Started GET "/assets/tweets.js?body=1" for 192.168.0.134 at 2018-06-09 21:43:56 +0900
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.134 at 2018-06-09 21:43:56 +0900
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.134 at 2018-06-09 21:43:56 +0900
+
+
+Started GET "/assets/back.jpg" for 192.168.0.134 at 2018-06-09 21:43:56 +0900
+
+
+Started POST "/registrations" for 192.168.0.134 at 2018-06-09 21:44:24 +0900
+Processing by RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ZqGrLfELVcMZyAqbA7oAjLnvlHfG8Pp7p8rAJjOxECu9yvye/xacZuCjN27N+d7y6axuFo+hQicSOJ+Whw0VAg==", "user"=>{"name"=>"ssekimoto", "email"=>"ssekimoto@vmware.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"登録する"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER('ssekimoto') LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('ssekimoto@vmware.com') LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  Rendered registrations/new.html.haml within layouts/registrations (1.2ms)
+Completed 200 OK in 210ms (Views: 34.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 21:44:24 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 21:44:24 +0900
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 21:44:24 +0900
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 21:44:24 +0900
+
+
+Started POST "/registrations" for 192.168.0.134 at 2018-06-09 21:44:34 +0900
+Processing by RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MLH0/WzcT4hDJ9P2gJX0UuS6rUSNEnkM3d8ONo8FbbHr2qNOYsGGLbpM7gNO1iostPlXJcRDwVBoLVGGO7lomA==", "user"=>{"name"=>"ssekimoto", "email"=>"ssekimoto@vmware.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"登録する"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER('ssekimoto') LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('ssekimoto@vmware.com') LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("name", "email", "salt", "crypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "ssekimoto"], ["email", "ssekimoto@vmware.com"], ["salt", "tfSxMG2i7VSNzkyZhyGg"], ["crypted_password", "$2a$10$9T76IRS/ZvUKAD3wZRvquuzg6bMHOeIIslw/LJ/p57XINACvKFgNO"], ["created_at", "2018-06-09 12:44:35.154802"], ["updated_at", "2018-06-09 12:44:35.154802"]]
+  [1m[35m (3.5ms)[0m  commit transaction
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = 'ssekimoto@vmware.com'  ORDER BY "users"."id" ASC LIMIT 1[0m
+Redirected to http://172.16.190.131:3200/tweets
+Completed 302 Found in 324ms (ActiveRecord: 4.3ms)
+
+
+Started GET "/tweets" for 192.168.0.134 at 2018-06-09 21:44:35 +0900
+Processing by TweetsController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?  [["follower_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?[0m  [["inverse_follower_id", 1]]
+  Rendered tweets/_panel.html.haml (38.1ms)
+  [1m[35mTweet Load (0.1ms)[0m  SELECT "tweets".* FROM "tweets"  ORDER BY "tweets"."created_at" DESC
+  Rendered users/_tweet.html.haml (0.0ms)
+  Rendered tweets/index.html.haml within layouts/application (49.9ms)
+  Rendered layouts/_header.html.haml (3.5ms)
+Completed 200 OK in 137ms (Views: 128.4ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 21:44:35 +0900
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 21:44:35 +0900
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 21:44:35 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 21:44:35 +0900
+
+
+Started POST "/tweets" for 192.168.0.134 at 2018-06-09 21:45:10 +0900
+Processing by TweetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"nZWDDPh34OWkq3PeBOu2hekYGPqwf+JOuG+HyUBRUMdG/tS/9mopQF3ATivKqGj7uVvim/kuWhINndh59O1V7g==", "tweet"=>{"content"=>"Hello, World!"}, "commit"=>"つぶやく"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "tweets" ("content", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["content", "Hello, World!"], ["user_id", 1], ["created_at", "2018-06-09 12:45:10.954906"], ["updated_at", "2018-06-09 12:45:10.954906"]]
+  [1m[35m (3.2ms)[0m  commit transaction
+Redirected to http://172.16.190.131:3200/tweets
+Completed 302 Found in 8ms (ActiveRecord: 3.5ms)
+
+
+Started GET "/tweets" for 192.168.0.134 at 2018-06-09 21:45:10 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?  [["user_id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?[0m  [["follower_id", 1]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?  [["inverse_follower_id", 1]]
+  Rendered tweets/_panel.html.haml (3.3ms)
+  [1m[36mTweet Load (0.1ms)[0m  [1mSELECT "tweets".* FROM "tweets"  ORDER BY "tweets"."created_at" DESC[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mFavorite Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1[0m  [["tweet_id", 1], ["user_id", 1]]
+  [1m[35mFollow Exists (0.1ms)[0m  SELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_tweet.html.haml (9.0ms)
+  Rendered tweets/index.html.haml within layouts/application (13.6ms)
+  Rendered layouts/_header.html.haml (0.4ms)
+Completed 200 OK in 44ms (Views: 43.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 21:45:11 +0900
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 21:45:11 +0900
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 21:45:11 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 21:45:11 +0900
+
+
+Started GET "/settings/edit" for 192.168.0.134 at 2018-06-09 21:45:17 +0900
+Processing by SettingsController#edit as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered settings/edit.html.haml within layouts/application (3.9ms)
+  Rendered layouts/_header.html.haml (0.4ms)
+Completed 200 OK in 39ms (Views: 38.0ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 192.168.0.134 at 2018-06-09 21:45:21 +0900
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?  [["user_id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?[0m  [["follower_id", 1]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?  [["inverse_follower_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "favorites" WHERE "favorites"."user_id" = ?[0m  [["user_id", 1]]
+  Rendered users/_header.html.haml (10.0ms)
+  [1m[35mTweet Exists (0.1ms)[0m  SELECT  1 AS one FROM "tweets" WHERE "tweets"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  [1m[36mTweet Load (0.1ms)[0m  [1mSELECT "tweets".* FROM "tweets" WHERE "tweets"."user_id" = ?  ORDER BY "tweets"."created_at" DESC[0m  [["user_id", 1]]
+  [1m[35mFavorite Exists (0.2ms)[0m  SELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1  [["tweet_id", 1], ["user_id", 1]]
+  [1m[36mFollow Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1[0m  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_tweet.html.haml (2.3ms)
+  Rendered users/show.html.haml within layouts/application (17.5ms)
+  Rendered layouts/_header.html.haml (0.4ms)
+Completed 200 OK in 51ms (Views: 49.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/tweets" for 192.168.0.134 at 2018-06-09 21:45:23 +0900
+Processing by TweetsController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?  [["follower_id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?[0m  [["inverse_follower_id", 1]]
+  Rendered tweets/_panel.html.haml (3.5ms)
+  [1m[35mTweet Load (0.1ms)[0m  SELECT "tweets".* FROM "tweets"  ORDER BY "tweets"."created_at" DESC
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mFavorite Exists (0.0ms)[0m  SELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1  [["tweet_id", 1], ["user_id", 1]]
+  [1m[36mFollow Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1[0m  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_tweet.html.haml (2.3ms)
+  Rendered tweets/index.html.haml within layouts/application (7.3ms)
+  Rendered layouts/_header.html.haml (0.3ms)
+Completed 200 OK in 38ms (Views: 36.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 192.168.0.134 at 2018-06-09 21:45:24 +0900
+Processing by RegistrationsController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Redirected to http://172.16.190.131:3200/tweets
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/tweets" for 192.168.0.134 at 2018-06-09 21:45:24 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?  [["user_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?[0m  [["follower_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?  [["inverse_follower_id", 1]]
+  Rendered tweets/_panel.html.haml (3.9ms)
+  [1m[36mTweet Load (0.1ms)[0m  [1mSELECT "tweets".* FROM "tweets"  ORDER BY "tweets"."created_at" DESC[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mFavorite Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1[0m  [["tweet_id", 1], ["user_id", 1]]
+  [1m[35mFollow Exists (0.1ms)[0m  SELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_tweet.html.haml (2.2ms)
+  Rendered tweets/index.html.haml within layouts/application (7.6ms)
+  Rendered layouts/_header.html.haml (0.4ms)
+Completed 200 OK in 41ms (Views: 39.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users" for 192.168.0.134 at 2018-06-09 21:45:26 +0900
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users"
+  [1m[36mFollow Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1[0m  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_user.html.haml (3.3ms)
+  Rendered users/index.html.haml within layouts/application (6.4ms)
+  Rendered layouts/_header.html.haml (0.4ms)
+Completed 200 OK in 39ms (Views: 38.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/tweets" for 192.168.0.134 at 2018-06-09 21:45:27 +0900
+Processing by TweetsController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?  [["follower_id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?[0m  [["inverse_follower_id", 1]]
+  Rendered tweets/_panel.html.haml (3.3ms)
+  [1m[35mTweet Load (0.1ms)[0m  SELECT "tweets".* FROM "tweets"  ORDER BY "tweets"."created_at" DESC
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mFavorite Exists (0.1ms)[0m  SELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1  [["tweet_id", 1], ["user_id", 1]]
+  [1m[36mFollow Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1[0m  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_tweet.html.haml (2.4ms)
+  Rendered tweets/index.html.haml within layouts/application (7.2ms)
+  Rendered layouts/_header.html.haml (0.4ms)
+Completed 200 OK in 35ms (Views: 34.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 192.168.0.134 at 2018-06-09 21:45:27 +0900
+Processing by RegistrationsController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Redirected to http://172.16.190.131:3200/tweets
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/tweets" for 192.168.0.134 at 2018-06-09 21:45:27 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?  [["user_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?[0m  [["follower_id", 1]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?  [["inverse_follower_id", 1]]
+  Rendered tweets/_panel.html.haml (3.5ms)
+  [1m[36mTweet Load (0.1ms)[0m  [1mSELECT "tweets".* FROM "tweets"  ORDER BY "tweets"."created_at" DESC[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mFavorite Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1[0m  [["tweet_id", 1], ["user_id", 1]]
+  [1m[35mFollow Exists (0.0ms)[0m  SELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_tweet.html.haml (4.5ms)
+  Rendered tweets/index.html.haml within layouts/application (9.3ms)
+  Rendered layouts/_header.html.haml (0.3ms)
+Completed 200 OK in 37ms (Views: 35.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/tweets" for 192.168.0.134 at 2018-06-09 21:45:28 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?  [["user_id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?[0m  [["follower_id", 1]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?  [["inverse_follower_id", 1]]
+  Rendered tweets/_panel.html.haml (3.4ms)
+  [1m[36mTweet Load (0.1ms)[0m  [1mSELECT "tweets".* FROM "tweets"  ORDER BY "tweets"."created_at" DESC[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mFavorite Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1[0m  [["tweet_id", 1], ["user_id", 1]]
+  [1m[35mFollow Exists (0.1ms)[0m  SELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_tweet.html.haml (2.3ms)
+  Rendered tweets/index.html.haml within layouts/application (7.0ms)
+  Rendered layouts/_header.html.haml (0.4ms)
+Completed 200 OK in 36ms (Views: 35.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users" for 192.168.0.134 at 2018-06-09 21:45:29 +0900
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users"
+  [1m[36mFollow Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1[0m  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_user.html.haml (1.1ms)
+  Rendered users/index.html.haml within layouts/application (1.9ms)
+  Rendered layouts/_header.html.haml (0.3ms)
+Completed 200 OK in 31ms (Views: 30.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/tweets" for 192.168.0.134 at 2018-06-09 21:45:29 +0900
+Processing by TweetsController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?  [["follower_id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?[0m  [["inverse_follower_id", 1]]
+  Rendered tweets/_panel.html.haml (3.4ms)
+  [1m[35mTweet Load (0.2ms)[0m  SELECT "tweets".* FROM "tweets"  ORDER BY "tweets"."created_at" DESC
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mFavorite Exists (0.0ms)[0m  SELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1  [["tweet_id", 1], ["user_id", 1]]
+  [1m[36mFollow Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1[0m  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_tweet.html.haml (2.3ms)
+  Rendered tweets/index.html.haml within layouts/application (7.1ms)
+  Rendered layouts/_header.html.haml (0.3ms)
+Completed 200 OK in 36ms (Views: 34.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 192.168.0.134 at 2018-06-09 21:45:30 +0900
+Processing by RegistrationsController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Redirected to http://172.16.190.131:3200/tweets
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/tweets" for 192.168.0.134 at 2018-06-09 21:45:30 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?  [["user_id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?[0m  [["follower_id", 1]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?  [["inverse_follower_id", 1]]
+  Rendered tweets/_panel.html.haml (3.4ms)
+  [1m[36mTweet Load (0.1ms)[0m  [1mSELECT "tweets".* FROM "tweets"  ORDER BY "tweets"."created_at" DESC[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mFavorite Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1[0m  [["tweet_id", 1], ["user_id", 1]]
+  [1m[35mFollow Exists (0.0ms)[0m  SELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_tweet.html.haml (3.5ms)
+  Rendered tweets/index.html.haml within layouts/application (8.2ms)
+  Rendered layouts/_header.html.haml (0.3ms)
+Completed 200 OK in 36ms (Views: 35.2ms | ActiveRecord: 0.5ms)
+
+
+Started DELETE "/sessions" for 192.168.0.134 at 2018-06-09 21:45:31 +0900
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"OmF0fa2ukFnFoyQzQ1K31wb9T1XAL+mPbODpdHwdt6jhCiPOo7NZ/DzIGcaNEWmpVr61NIl+UdPZErbEyKGygQ=="}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Redirected to http://172.16.190.131:3200/
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 192.168.0.134 at 2018-06-09 21:45:31 +0900
+Processing by RegistrationsController#new as HTML
+  Rendered registrations/new.html.haml within layouts/registrations (0.9ms)
+Completed 200 OK in 30ms (Views: 29.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 21:45:31 +0900
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 21:45:31 +0900
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 21:45:31 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 21:45:31 +0900
+
+
+Started GET "/sessions/new" for 192.168.0.134 at 2018-06-09 21:45:44 +0900
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.haml within layouts/sessions (3.5ms)
+Completed 200 OK in 40ms (Views: 39.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 21:45:44 +0900
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 21:45:44 +0900
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 21:45:44 +0900
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 21:45:44 +0900
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.0.134 at 2018-06-09 21:45:44 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.0.134 at 2018-06-09 21:45:44 +0900
+
+
+Started POST "/sessions" for 192.168.0.134 at 2018-06-09 21:45:46 +0900
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"im+maeYmF0kwZgtIdrhiKvE5hEB9k6kLUvVZaGTorK0im907OBa3DfXdEoy1LpvAQRGUiO9IQPANA0CD4fB1eA==", "user"=>{"email"=>"ssekimoto", "password"=>"[FILTERED]"}, "commit"=>"ログイン"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = 'ssekimoto'  ORDER BY "users"."id" ASC LIMIT 1
+  Rendered sessions/new.html.haml within layouts/sessions (0.8ms)
+Completed 200 OK in 34ms (Views: 32.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 21:45:46 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.0.134 at 2018-06-09 21:45:46 +0900
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.0.134 at 2018-06-09 21:45:46 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 21:45:46 +0900
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 21:45:46 +0900
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 21:45:46 +0900
+
+
+Started POST "/sessions" for 192.168.0.134 at 2018-06-09 21:45:53 +0900
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KY+FeTA0S7qmCP277ajIE8WaK3s6WLquKT6REtp5zsOBe/4r7gTr/mOz5H8uPjH5dbI7s6iDU1V2yIj5X2EXFg==", "user"=>{"email"=>"ssekimoto@vmware.com", "password"=>"[FILTERED]"}, "commit"=>"ログイン"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = 'ssekimoto@vmware.com'  ORDER BY "users"."id" ASC LIMIT 1[0m
+Redirected to http://172.16.190.131:3200/tweets
+Completed 302 Found in 163ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/tweets" for 192.168.0.134 at 2018-06-09 21:45:53 +0900
+Processing by TweetsController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?  [["follower_id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?[0m  [["inverse_follower_id", 1]]
+  Rendered tweets/_panel.html.haml (3.6ms)
+  [1m[35mTweet Load (0.1ms)[0m  SELECT "tweets".* FROM "tweets"  ORDER BY "tweets"."created_at" DESC
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mFavorite Exists (0.1ms)[0m  SELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1  [["tweet_id", 1], ["user_id", 1]]
+  [1m[36mFollow Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1[0m  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_tweet.html.haml (2.4ms)
+  Rendered tweets/index.html.haml within layouts/application (7.3ms)
+  Rendered layouts/_header.html.haml (0.4ms)
+Completed 200 OK in 38ms (Views: 37.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 21:45:53 +0900
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.0.134 at 2018-06-09 21:45:53 +0900
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 21:45:53 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 21:45:53 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.0.134 at 2018-06-09 21:45:53 +0900
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 21:45:53 +0900
+
+
+Started DELETE "/sessions" for 192.168.0.134 at 2018-06-09 21:46:35 +0900
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"JEnZvfPfCuAVtJh1jWwStPVCRakU7AaMdTbbyDDwT2SMvaLvLe+qpNAPgbFO+uteRWpVYYY373cqwMIjteiWsQ=="}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Redirected to http://172.16.190.131:3200/
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 192.168.0.134 at 2018-06-09 21:46:35 +0900
+Processing by RegistrationsController#new as HTML
+  Rendered registrations/new.html.haml within layouts/registrations (1.0ms)
+Completed 200 OK in 31ms (Views: 30.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 21:46:35 +0900
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 21:46:35 +0900
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 21:46:35 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 21:46:35 +0900
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.0.134 at 2018-06-09 21:46:35 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.0.134 at 2018-06-09 21:46:35 +0900
+
+
+Started GET "/assets/back.jpg" for 192.168.0.134 at 2018-06-09 21:46:35 +0900
+
+
+Started GET "/" for 192.168.0.134 at 2018-06-09 22:03:37 +0900
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by RegistrationsController#new as HTML
+  Rendered registrations/new.html.haml within layouts/registrations (11.4ms)
+Completed 200 OK in 738ms (Views: 714.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 22:03:38 +0900
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 22:03:38 +0900
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 22:03:38 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.0.134 at 2018-06-09 22:03:38 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 22:03:38 +0900
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.0.134 at 2018-06-09 22:03:38 +0900
+
+
+Started GET "/assets/turbolinks.js?body=1" for 192.168.0.134 at 2018-06-09 22:03:38 +0900
+
+
+Started GET "/assets/back.jpg" for 192.168.0.134 at 2018-06-09 22:03:39 +0900
+
+
+Started GET "/" for 192.168.0.134 at 2018-06-09 22:05:55 +0900
+Processing by RegistrationsController#new as HTML
+  Rendered registrations/new.html.haml within layouts/registrations (1.1ms)
+Completed 200 OK in 647ms (Views: 646.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 22:05:56 +0900
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 22:05:56 +0900
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 22:05:56 +0900
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.0.134 at 2018-06-09 22:05:56 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 22:05:56 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.0.134 at 2018-06-09 22:05:56 +0900
+
+
+Started GET "/assets/turbolinks.js?body=1" for 192.168.0.134 at 2018-06-09 22:05:56 +0900
+
+
+Started GET "/" for 192.168.0.134 at 2018-06-09 22:05:59 +0900
+Processing by RegistrationsController#new as HTML
+  Rendered registrations/new.html.haml within layouts/registrations (1.0ms)
+Completed 200 OK in 30ms (Views: 29.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 22:05:59 +0900
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 22:05:59 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 22:05:59 +0900
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 22:05:59 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.0.134 at 2018-06-09 22:05:59 +0900
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.0.134 at 2018-06-09 22:05:59 +0900
+
+
+Started GET "/assets/turbolinks.js?body=1" for 192.168.0.134 at 2018-06-09 22:05:59 +0900
+
+
+Started GET "/" for 192.168.0.134 at 2018-06-09 22:06:12 +0900
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by RegistrationsController#new as HTML
+  Rendered registrations/new.html.haml within layouts/registrations (15.2ms)
+Completed 200 OK in 102ms (Views: 78.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 22:06:13 +0900
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 22:06:13 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 22:06:13 +0900
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 22:06:13 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.0.134 at 2018-06-09 22:06:13 +0900
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.0.134 at 2018-06-09 22:06:13 +0900
+
+
+Started GET "/assets/turbolinks.js?body=1" for 192.168.0.134 at 2018-06-09 22:06:13 +0900
+
+
+Started GET "/" for 192.168.0.134 at 2018-06-09 22:07:06 +0900
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by RegistrationsController#new as HTML
+  Rendered registrations/new.html.haml within layouts/registrations (11.1ms)
+Completed 200 OK in 99ms (Views: 72.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.0.134 at 2018-06-09 22:07:06 +0900
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 22:07:06 +0900
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 22:07:06 +0900
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 22:07:06 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.0.134 at 2018-06-09 22:07:06 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 22:07:06 +0900
+
+
+Started GET "/assets/turbolinks.js?body=1" for 192.168.0.134 at 2018-06-09 22:07:06 +0900
+
+
+Started GET "/assets/back.jpg" for 192.168.0.134 at 2018-06-09 22:07:06 +0900
+
+
+Started GET "/" for 192.168.0.134 at 2018-06-09 22:16:23 +0900
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by RegistrationsController#new as HTML
+  Rendered registrations/new.html.haml within layouts/registrations (12.1ms)
+Completed 200 OK in 105ms (Views: 77.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 22:16:23 +0900
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 22:16:23 +0900
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 22:16:23 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 22:16:23 +0900
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.0.134 at 2018-06-09 22:16:23 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.0.134 at 2018-06-09 22:16:23 +0900
+
+
+Started GET "/assets/turbolinks.js?body=1" for 192.168.0.134 at 2018-06-09 22:16:23 +0900
+
+
+Started GET "/assets/registrations.js?body=1" for 192.168.0.134 at 2018-06-09 22:16:23 +0900
+
+
+Started GET "/assets/sessions.js?body=1" for 192.168.0.134 at 2018-06-09 22:16:23 +0900
+
+
+Started GET "/assets/settings.js?body=1" for 192.168.0.134 at 2018-06-09 22:16:23 +0900
+
+
+Started GET "/assets/tweets.js?body=1" for 192.168.0.134 at 2018-06-09 22:16:23 +0900
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.134 at 2018-06-09 22:16:23 +0900
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.134 at 2018-06-09 22:16:23 +0900
+
+
+Started GET "/" for 192.168.0.134 at 2018-06-09 22:16:24 +0900
+Processing by RegistrationsController#new as HTML
+  Rendered registrations/new.html.haml within layouts/registrations (1.1ms)
+Completed 200 OK in 33ms (Views: 32.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 22:16:25 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 22:16:25 +0900
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 22:16:25 +0900
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.0.134 at 2018-06-09 22:16:25 +0900
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 22:16:25 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.0.134 at 2018-06-09 22:16:25 +0900
+
+
+Started GET "/assets/turbolinks.js?body=1" for 192.168.0.134 at 2018-06-09 22:16:25 +0900
+
+
+Started GET "/assets/registrations.js?body=1" for 192.168.0.134 at 2018-06-09 22:16:25 +0900
+
+
+Started GET "/assets/tweets.js?body=1" for 192.168.0.134 at 2018-06-09 22:16:25 +0900
+
+
+Started GET "/assets/settings.js?body=1" for 192.168.0.134 at 2018-06-09 22:16:25 +0900
+
+
+Started GET "/assets/sessions.js?body=1" for 192.168.0.134 at 2018-06-09 22:16:25 +0900
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.134 at 2018-06-09 22:16:25 +0900
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.134 at 2018-06-09 22:16:25 +0900
+
+
+Started GET "/" for 192.168.0.134 at 2018-06-09 22:22:38 +0900
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by RegistrationsController#new as HTML
+  Rendered registrations/new.html.haml within layouts/registrations (11.9ms)
+Completed 200 OK in 747ms (Views: 718.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 22:22:39 +0900
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 22:22:39 +0900
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 22:22:39 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 22:22:39 +0900
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.0.134 at 2018-06-09 22:22:39 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.0.134 at 2018-06-09 22:22:39 +0900
+
+
+Started GET "/assets/turbolinks.js?body=1" for 192.168.0.134 at 2018-06-09 22:22:39 +0900
+
+
+Started GET "/assets/registrations.js?body=1" for 192.168.0.134 at 2018-06-09 22:22:39 +0900
+
+
+Started GET "/assets/sessions.js?body=1" for 192.168.0.134 at 2018-06-09 22:22:39 +0900
+
+
+Started GET "/assets/settings.js?body=1" for 192.168.0.134 at 2018-06-09 22:22:39 +0900
+
+
+Started GET "/assets/tweets.js?body=1" for 192.168.0.134 at 2018-06-09 22:22:39 +0900
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.134 at 2018-06-09 22:22:39 +0900
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.134 at 2018-06-09 22:22:39 +0900
+
+
+Started GET "/assets/back.jpg" for 192.168.0.134 at 2018-06-09 22:22:40 +0900
+
+
+Started GET "/" for 192.168.0.134 at 2018-06-09 22:34:02 +0900
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by RegistrationsController#new as HTML
+  Rendered registrations/new.html.haml within layouts/registrations (11.8ms)
+Completed 200 OK in 759ms (Views: 732.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 22:34:03 +0900
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 22:34:03 +0900
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 22:34:03 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 22:34:03 +0900
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.0.134 at 2018-06-09 22:34:03 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.0.134 at 2018-06-09 22:34:03 +0900
+
+
+Started GET "/assets/turbolinks.js?body=1" for 192.168.0.134 at 2018-06-09 22:34:03 +0900
+
+
+Started GET "/assets/registrations.js?body=1" for 192.168.0.134 at 2018-06-09 22:34:03 +0900
+
+
+Started GET "/assets/sessions.js?body=1" for 192.168.0.134 at 2018-06-09 22:34:03 +0900
+
+
+Started GET "/assets/settings.js?body=1" for 192.168.0.134 at 2018-06-09 22:34:03 +0900
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.134 at 2018-06-09 22:34:03 +0900
+
+
+Started GET "/assets/tweets.js?body=1" for 192.168.0.134 at 2018-06-09 22:34:03 +0900
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.134 at 2018-06-09 22:34:03 +0900
+
+
+Started GET "/assets/back.jpg" for 192.168.0.134 at 2018-06-09 22:34:03 +0900
+
+
+Started GET "/sessions/new" for 192.168.0.134 at 2018-06-09 22:34:34 +0900
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.haml within layouts/sessions (5.3ms)
+Completed 200 OK in 39ms (Views: 38.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 22:34:34 +0900
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 22:34:34 +0900
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.0.134 at 2018-06-09 22:34:34 +0900
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 22:34:34 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.0.134 at 2018-06-09 22:34:34 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 22:34:34 +0900
+
+
+Started GET "/assets/turbolinks.js?body=1" for 192.168.0.134 at 2018-06-09 22:34:34 +0900
+
+
+Started GET "/assets/sessions.js?body=1" for 192.168.0.134 at 2018-06-09 22:34:34 +0900
+
+
+Started GET "/assets/registrations.js?body=1" for 192.168.0.134 at 2018-06-09 22:34:34 +0900
+
+
+Started GET "/assets/settings.js?body=1" for 192.168.0.134 at 2018-06-09 22:34:34 +0900
+
+
+Started GET "/assets/tweets.js?body=1" for 192.168.0.134 at 2018-06-09 22:34:34 +0900
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.134 at 2018-06-09 22:34:34 +0900
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.134 at 2018-06-09 22:34:34 +0900
+
+
+Started POST "/sessions" for 192.168.0.134 at 2018-06-09 22:34:35 +0900
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"fMzZpSV4igIVrDzfTUMandgKouO7GQ4YThV+C5Y+E/bgvP0A34rVg8jkXCqAREiB4aOHaaFX67sJ5PlBUf3kMw==", "user"=>{"email"=>"ssekimoto@vmware.com", "password"=>"[FILTERED]"}, "commit"=>"ログイン"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = 'ssekimoto@vmware.com'  ORDER BY "users"."id" ASC LIMIT 1
+Redirected to http://172.16.190.131:3200/tweets
+Completed 302 Found in 158ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/tweets" for 192.168.0.134 at 2018-06-09 22:34:35 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?  [["user_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?[0m  [["follower_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?  [["inverse_follower_id", 1]]
+  Rendered tweets/_panel.html.haml (27.9ms)
+  [1m[36mTweet Load (0.1ms)[0m  [1mSELECT "tweets".* FROM "tweets"  ORDER BY "tweets"."created_at" DESC[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mFavorite Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1[0m  [["tweet_id", 1], ["user_id", 1]]
+  [1m[35mFollow Exists (0.1ms)[0m  SELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_tweet.html.haml (18.7ms)
+  Rendered tweets/index.html.haml within layouts/application (53.3ms)
+  Rendered layouts/_header.html.haml (3.3ms)
+Completed 200 OK in 98ms (Views: 91.3ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 22:34:35 +0900
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 22:34:35 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.0.134 at 2018-06-09 22:34:35 +0900
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.0.134 at 2018-06-09 22:34:35 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 22:34:35 +0900
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 22:34:35 +0900
+
+
+Started GET "/assets/turbolinks.js?body=1" for 192.168.0.134 at 2018-06-09 22:34:35 +0900
+
+
+Started GET "/assets/tweets.js?body=1" for 192.168.0.134 at 2018-06-09 22:34:35 +0900
+
+
+Started GET "/assets/settings.js?body=1" for 192.168.0.134 at 2018-06-09 22:34:36 +0900
+
+
+Started GET "/assets/sessions.js?body=1" for 192.168.0.134 at 2018-06-09 22:34:36 +0900
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.134 at 2018-06-09 22:34:36 +0900
+
+
+Started GET "/assets/registrations.js?body=1" for 192.168.0.134 at 2018-06-09 22:34:36 +0900
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.134 at 2018-06-09 22:34:36 +0900
+
+
+Started GET "/tweets/timeline" for 192.168.0.134 at 2018-06-09 22:34:41 +0900
+Processing by TweetsController#timeline as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?  [["user_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?[0m  [["follower_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?  [["inverse_follower_id", 1]]
+  Rendered tweets/_panel.html.haml (4.4ms)
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT "tweets"."id" AS t0_r0, "tweets"."user_id" AS t0_r1, "tweets"."content" AS t0_r2, "tweets"."created_at" AS t0_r3, "tweets"."updated_at" AS t0_r4, "users"."id" AS t1_r0, "users"."email" AS t1_r1, "users"."crypted_password" AS t1_r2, "users"."salt" AS t1_r3, "users"."created_at" AS t1_r4, "users"."updated_at" AS t1_r5, "users"."name" AS t1_r6, "users"."screen_name" AS t1_r7, "users"."bio" AS t1_r8, "follows"."id" AS t2_r0, "follows"."follower_id" AS t2_r1, "follows"."inverse_follower_id" AS t2_r2, "follows"."created_at" AS t2_r3, "follows"."updated_at" AS t2_r4 FROM "tweets" LEFT OUTER JOIN "users" ON "users"."id" = "tweets"."user_id" LEFT OUTER JOIN "follows" ON "follows"."inverse_follower_id" = "users"."id" WHERE "follows"."follower_id" = 1  ORDER BY "tweets"."created_at" DESC[0m
+  Rendered users/_tweet.html.haml (0.0ms)
+  Rendered tweets/timeline.html.haml within layouts/application (11.6ms)
+  Rendered layouts/_header.html.haml (0.5ms)
+Completed 200 OK in 46ms (Views: 44.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/tweets" for 192.168.0.134 at 2018-06-09 22:34:42 +0900
+Processing by TweetsController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?  [["follower_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?[0m  [["inverse_follower_id", 1]]
+  Rendered tweets/_panel.html.haml (3.9ms)
+  [1m[35mTweet Load (0.1ms)[0m  SELECT "tweets".* FROM "tweets"  ORDER BY "tweets"."created_at" DESC
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mFavorite Exists (0.0ms)[0m  SELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1  [["tweet_id", 1], ["user_id", 1]]
+  [1m[36mFollow Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1[0m  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_tweet.html.haml (2.5ms)
+  Rendered tweets/index.html.haml within layouts/application (7.6ms)
+  Rendered layouts/_header.html.haml (0.4ms)
+Completed 200 OK in 39ms (Views: 38.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/1" for 192.168.0.134 at 2018-06-09 22:34:59 +0900
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?  [["user_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?[0m  [["follower_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?  [["inverse_follower_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "favorites" WHERE "favorites"."user_id" = ?[0m  [["user_id", 1]]
+  Rendered users/_header.html.haml (11.5ms)
+  [1m[35mTweet Exists (0.1ms)[0m  SELECT  1 AS one FROM "tweets" WHERE "tweets"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  [1m[36mTweet Load (0.1ms)[0m  [1mSELECT "tweets".* FROM "tweets" WHERE "tweets"."user_id" = ?  ORDER BY "tweets"."created_at" DESC[0m  [["user_id", 1]]
+  [1m[35mFavorite Exists (0.0ms)[0m  SELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1  [["tweet_id", 1], ["user_id", 1]]
+  [1m[36mFollow Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1[0m  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_tweet.html.haml (1.8ms)
+  Rendered users/show.html.haml within layouts/application (17.6ms)
+  Rendered layouts/_header.html.haml (0.4ms)
+Completed 200 OK in 50ms (Views: 48.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/users/1" for 192.168.0.134 at 2018-06-09 22:35:04 +0900
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?  [["user_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?[0m  [["follower_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?  [["inverse_follower_id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "favorites" WHERE "favorites"."user_id" = ?[0m  [["user_id", 1]]
+  Rendered users/_header.html.haml (4.9ms)
+  [1m[35mTweet Exists (0.0ms)[0m  SELECT  1 AS one FROM "tweets" WHERE "tweets"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  [1m[36mTweet Load (0.1ms)[0m  [1mSELECT "tweets".* FROM "tweets" WHERE "tweets"."user_id" = ?  ORDER BY "tweets"."created_at" DESC[0m  [["user_id", 1]]
+  [1m[35mFavorite Exists (0.0ms)[0m  SELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1  [["tweet_id", 1], ["user_id", 1]]
+  [1m[36mFollow Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1[0m  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_tweet.html.haml (1.7ms)
+  Rendered users/show.html.haml within layouts/application (8.4ms)
+  Rendered layouts/_header.html.haml (0.4ms)
+Completed 200 OK in 38ms (Views: 36.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/settings/edit" for 192.168.0.134 at 2018-06-09 22:35:06 +0900
+Processing by SettingsController#edit as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered settings/edit.html.haml within layouts/application (5.3ms)
+  Rendered layouts/_header.html.haml (0.4ms)
+Completed 200 OK in 39ms (Views: 38.0ms | ActiveRecord: 0.1ms)
+
+
+Started DELETE "/sessions" for 192.168.0.134 at 2018-06-09 22:35:14 +0900
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"FCSvQUSWcsTuto/ubyrMU0y6owHThIpEtbuWRwn3ep2IVIvkvmQtRTP+7xuiLZ5PdROGi8nKb+fyShENzjSNWA=="}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Redirected to http://172.16.190.131:3200/
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 192.168.0.134 at 2018-06-09 22:35:14 +0900
+Processing by RegistrationsController#new as HTML
+  Rendered registrations/new.html.haml within layouts/registrations (1.0ms)
+Completed 200 OK in 32ms (Views: 32.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 22:35:14 +0900
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 22:35:14 +0900
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 22:35:14 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 22:35:14 +0900
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.0.134 at 2018-06-09 22:35:14 +0900
+
+
+Started GET "/assets/turbolinks.js?body=1" for 192.168.0.134 at 2018-06-09 22:35:14 +0900
+
+
+Started GET "/assets/registrations.js?body=1" for 192.168.0.134 at 2018-06-09 22:35:14 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.0.134 at 2018-06-09 22:35:14 +0900
+
+
+Started GET "/assets/settings.js?body=1" for 192.168.0.134 at 2018-06-09 22:35:14 +0900
+
+
+Started GET "/assets/sessions.js?body=1" for 192.168.0.134 at 2018-06-09 22:35:14 +0900
+
+
+Started GET "/assets/tweets.js?body=1" for 192.168.0.134 at 2018-06-09 22:35:14 +0900
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.134 at 2018-06-09 22:35:14 +0900
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.134 at 2018-06-09 22:35:14 +0900
+
+
+Started GET "/sessions/new" for 192.168.0.134 at 2018-06-09 22:35:16 +0900
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.haml within layouts/sessions (0.8ms)
+Completed 200 OK in 30ms (Views: 29.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 22:35:16 +0900
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 22:35:16 +0900
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 22:35:16 +0900
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.0.134 at 2018-06-09 22:35:16 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 22:35:16 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.0.134 at 2018-06-09 22:35:16 +0900
+
+
+Started GET "/assets/turbolinks.js?body=1" for 192.168.0.134 at 2018-06-09 22:35:16 +0900
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.134 at 2018-06-09 22:35:16 +0900
+
+
+Started GET "/assets/sessions.js?body=1" for 192.168.0.134 at 2018-06-09 22:35:16 +0900
+
+
+Started GET "/assets/settings.js?body=1" for 192.168.0.134 at 2018-06-09 22:35:16 +0900
+
+
+Started GET "/assets/tweets.js?body=1" for 192.168.0.134 at 2018-06-09 22:35:16 +0900
+
+
+Started GET "/assets/registrations.js?body=1" for 192.168.0.134 at 2018-06-09 22:35:16 +0900
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.134 at 2018-06-09 22:35:17 +0900
+
+
+Started POST "/sessions" for 192.168.0.134 at 2018-06-09 22:35:17 +0900
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"sFYbqxWoptaFRNeHnKZuUDo4J1bugXCurBd7IEmkY1oZuPpOm3s7MF0Xi/HUMKjdnUIQLWD+8FVjtLt1yPIRrg==", "user"=>{"email"=>"ssekimoto@vmware.com", "password"=>"[FILTERED]"}, "commit"=>"ログイン"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = 'ssekimoto@vmware.com'  ORDER BY "users"."id" ASC LIMIT 1
+Redirected to http://172.16.190.131:3200/tweets
+Completed 302 Found in 156ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/tweets" for 192.168.0.134 at 2018-06-09 22:35:18 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?  [["user_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?[0m  [["follower_id", 1]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?  [["inverse_follower_id", 1]]
+  Rendered tweets/_panel.html.haml (3.6ms)
+  [1m[36mTweet Load (0.1ms)[0m  [1mSELECT "tweets".* FROM "tweets"  ORDER BY "tweets"."created_at" DESC[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mFavorite Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1[0m  [["tweet_id", 1], ["user_id", 1]]
+  [1m[35mFollow Exists (0.0ms)[0m  SELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_tweet.html.haml (2.4ms)
+  Rendered tweets/index.html.haml within layouts/application (7.4ms)
+  Rendered layouts/_header.html.haml (0.4ms)
+Completed 200 OK in 42ms (Views: 40.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 22:35:18 +0900
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.0.134 at 2018-06-09 22:35:18 +0900
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 22:35:18 +0900
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 22:35:18 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 22:35:18 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.0.134 at 2018-06-09 22:35:18 +0900
+
+
+Started GET "/assets/turbolinks.js?body=1" for 192.168.0.134 at 2018-06-09 22:35:18 +0900
+
+
+Started GET "/assets/registrations.js?body=1" for 192.168.0.134 at 2018-06-09 22:35:18 +0900
+
+
+Started GET "/assets/tweets.js?body=1" for 192.168.0.134 at 2018-06-09 22:35:18 +0900
+
+
+Started GET "/assets/sessions.js?body=1" for 192.168.0.134 at 2018-06-09 22:35:18 +0900
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.134 at 2018-06-09 22:35:18 +0900
+
+
+Started GET "/assets/settings.js?body=1" for 192.168.0.134 at 2018-06-09 22:35:18 +0900
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.134 at 2018-06-09 22:35:18 +0900
+
+
+Started GET "/tweets" for 192.168.0.134 at 2018-06-09 22:42:59 +0900
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TweetsController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?  [["follower_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?[0m  [["inverse_follower_id", 1]]
+  Rendered tweets/_panel.html.haml (41.3ms)
+  [1m[35mTweet Load (0.1ms)[0m  SELECT "tweets".* FROM "tweets"  ORDER BY "tweets"."created_at" DESC
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mFavorite Exists (0.1ms)[0m  SELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1  [["tweet_id", 1], ["user_id", 1]]
+  [1m[36mFollow Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1[0m  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_tweet.html.haml (17.1ms)
+  Rendered tweets/index.html.haml within layouts/application (71.5ms)
+  Rendered layouts/_header.html.haml (3.3ms)
+Completed 200 OK in 154ms (Views: 135.9ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 22:42:59 +0900
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 22:42:59 +0900
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 22:42:59 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 22:42:59 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.0.134 at 2018-06-09 22:42:59 +0900
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.0.134 at 2018-06-09 22:42:59 +0900
+
+
+Started GET "/assets/turbolinks.js?body=1" for 192.168.0.134 at 2018-06-09 22:42:59 +0900
+
+
+Started GET "/assets/sessions.js?body=1" for 192.168.0.134 at 2018-06-09 22:42:59 +0900
+
+
+Started GET "/assets/registrations.js?body=1" for 192.168.0.134 at 2018-06-09 22:42:59 +0900
+
+
+Started GET "/assets/settings.js?body=1" for 192.168.0.134 at 2018-06-09 22:42:59 +0900
+
+
+Started GET "/assets/tweets.js?body=1" for 192.168.0.134 at 2018-06-09 22:42:59 +0900
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.134 at 2018-06-09 22:42:59 +0900
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.134 at 2018-06-09 22:42:59 +0900
+
+
+Started DELETE "/sessions" for 192.168.0.134 at 2018-06-09 22:43:04 +0900
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"mDgd3ms6k6b2Ts4zH5sIjqoIhqaO2scFDzqd8Clcrh0x1vw75ekOQC4dkkVXDc4DDXKx3QClR/7AmV2lqArc6Q=="}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Redirected to http://172.16.190.131:3200/
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 192.168.0.134 at 2018-06-09 22:43:04 +0900
+Processing by RegistrationsController#new as HTML
+  Rendered registrations/new.html.haml within layouts/registrations (6.8ms)
+Completed 200 OK in 42ms (Views: 41.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 22:43:04 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 22:43:04 +0900
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 22:43:04 +0900
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:04 +0900
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 22:43:04 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:04 +0900
+
+
+Started GET "/assets/turbolinks.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:04 +0900
+
+
+Started GET "/assets/registrations.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:04 +0900
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:04 +0900
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:04 +0900
+
+
+Started GET "/assets/tweets.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:04 +0900
+
+
+Started GET "/assets/settings.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:04 +0900
+
+
+Started GET "/assets/sessions.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:04 +0900
+
+
+Started GET "/assets/back.jpg" for 192.168.0.134 at 2018-06-09 22:43:04 +0900
+
+
+Started GET "/" for 192.168.0.134 at 2018-06-09 22:43:16 +0900
+Processing by RegistrationsController#new as HTML
+  Rendered registrations/new.html.haml within layouts/registrations (1.1ms)
+Completed 200 OK in 34ms (Views: 33.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 22:43:16 +0900
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 22:43:16 +0900
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 22:43:16 +0900
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:16 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:16 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 22:43:16 +0900
+
+
+Started GET "/assets/turbolinks.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:16 +0900
+
+
+Started GET "/assets/registrations.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:16 +0900
+
+
+Started GET "/assets/sessions.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:16 +0900
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:16 +0900
+
+
+Started GET "/assets/tweets.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:16 +0900
+
+
+Started GET "/assets/settings.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:16 +0900
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:16 +0900
+
+
+Started GET "/sessions/new" for 192.168.0.134 at 2018-06-09 22:43:24 +0900
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.haml within layouts/sessions (5.3ms)
+Completed 200 OK in 40ms (Views: 39.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 22:43:24 +0900
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 22:43:24 +0900
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:24 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 22:43:24 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:24 +0900
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 22:43:24 +0900
+
+
+Started GET "/assets/turbolinks.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:24 +0900
+
+
+Started GET "/assets/registrations.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:25 +0900
+
+
+Started GET "/assets/sessions.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:25 +0900
+
+
+Started GET "/assets/settings.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:25 +0900
+
+
+Started GET "/assets/tweets.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:25 +0900
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:25 +0900
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:25 +0900
+
+
+Started POST "/sessions" for 192.168.0.134 at 2018-06-09 22:43:28 +0900
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"mW1BQiAI0xC21KGfPccBkXmUZsgSBln95q9RDsRrbkbnQ3TurX2ItoA/XFKL3hbwXTes+4Ak3ILELrLjEJ+J+w==", "user"=>{"email"=>"ssekimoto@vmware.com", "password"=>"[FILTERED]"}, "commit"=>"ログイン"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = 'ssekimoto@vmware.com'  ORDER BY "users"."id" ASC LIMIT 1[0m
+Redirected to http://172.16.190.131:3200/tweets
+Completed 302 Found in 163ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/tweets" for 192.168.0.134 at 2018-06-09 22:43:28 +0900
+Processing by TweetsController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?  [["follower_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?[0m  [["inverse_follower_id", 1]]
+  Rendered tweets/_panel.html.haml (5.1ms)
+  [1m[35mTweet Load (0.2ms)[0m  SELECT "tweets".* FROM "tweets"  ORDER BY "tweets"."created_at" DESC
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mFavorite Exists (0.1ms)[0m  SELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1  [["tweet_id", 1], ["user_id", 1]]
+  [1m[36mFollow Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1[0m  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_tweet.html.haml (4.2ms)
+  Rendered tweets/index.html.haml within layouts/application (11.2ms)
+  Rendered layouts/_header.html.haml (0.4ms)
+Completed 200 OK in 47ms (Views: 45.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 22:43:28 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 22:43:28 +0900
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:28 +0900
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 22:43:28 +0900
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 22:43:28 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:28 +0900
+
+
+Started GET "/assets/turbolinks.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:28 +0900
+
+
+Started GET "/assets/sessions.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:28 +0900
+
+
+Started GET "/assets/tweets.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:28 +0900
+
+
+Started GET "/assets/settings.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:28 +0900
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:28 +0900
+
+
+Started GET "/assets/registrations.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:28 +0900
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:28 +0900
+
+
+Started GET "/tweets" for 192.168.0.134 at 2018-06-09 22:43:31 +0900
+Processing by TweetsController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?  [["follower_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?[0m  [["inverse_follower_id", 1]]
+  Rendered tweets/_panel.html.haml (4.4ms)
+  [1m[35mTweet Load (0.1ms)[0m  SELECT "tweets".* FROM "tweets"  ORDER BY "tweets"."created_at" DESC
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mFavorite Exists (0.0ms)[0m  SELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1  [["tweet_id", 1], ["user_id", 1]]
+  [1m[36mFollow Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1[0m  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_tweet.html.haml (2.4ms)
+  Rendered tweets/index.html.haml within layouts/application (8.2ms)
+  Rendered layouts/_header.html.haml (0.9ms)
+Completed 200 OK in 62ms (Views: 60.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users" for 192.168.0.134 at 2018-06-09 22:43:34 +0900
+Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[35mFollow Exists (0.1ms)[0m  SELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_user.html.haml (3.8ms)
+  Rendered users/index.html.haml within layouts/application (6.3ms)
+  Rendered layouts/_header.html.haml (0.4ms)
+Completed 200 OK in 39ms (Views: 38.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/tweets" for 192.168.0.134 at 2018-06-09 22:43:35 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?  [["user_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?[0m  [["follower_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?  [["inverse_follower_id", 1]]
+  Rendered tweets/_panel.html.haml (3.6ms)
+  [1m[36mTweet Load (0.1ms)[0m  [1mSELECT "tweets".* FROM "tweets"  ORDER BY "tweets"."created_at" DESC[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mFavorite Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1[0m  [["tweet_id", 1], ["user_id", 1]]
+  [1m[35mFollow Exists (0.0ms)[0m  SELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_tweet.html.haml (2.6ms)
+  Rendered tweets/index.html.haml within layouts/application (7.5ms)
+  Rendered layouts/_header.html.haml (0.3ms)
+Completed 200 OK in 38ms (Views: 36.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/settings/edit" for 192.168.0.134 at 2018-06-09 22:43:37 +0900
+Processing by SettingsController#edit as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered settings/edit.html.haml within layouts/application (3.6ms)
+  Rendered layouts/_header.html.haml (0.4ms)
+Completed 200 OK in 37ms (Views: 35.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 192.168.0.134 at 2018-06-09 22:43:38 +0900
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?  [["user_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?[0m  [["follower_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?  [["inverse_follower_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "favorites" WHERE "favorites"."user_id" = ?[0m  [["user_id", 1]]
+  Rendered users/_header.html.haml (10.9ms)
+  [1m[35mTweet Exists (0.1ms)[0m  SELECT  1 AS one FROM "tweets" WHERE "tweets"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  [1m[36mTweet Load (0.1ms)[0m  [1mSELECT "tweets".* FROM "tweets" WHERE "tweets"."user_id" = ?  ORDER BY "tweets"."created_at" DESC[0m  [["user_id", 1]]
+  [1m[35mFavorite Exists (0.1ms)[0m  SELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1  [["tweet_id", 1], ["user_id", 1]]
+  [1m[36mFollow Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1[0m  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_tweet.html.haml (2.0ms)
+  Rendered users/show.html.haml within layouts/application (17.6ms)
+  Rendered layouts/_header.html.haml (0.4ms)
+Completed 200 OK in 51ms (Views: 49.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/tweets" for 192.168.0.134 at 2018-06-09 22:43:41 +0900
+Processing by TweetsController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?  [["follower_id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?[0m  [["inverse_follower_id", 1]]
+  Rendered tweets/_panel.html.haml (3.8ms)
+  [1m[35mTweet Load (1.6ms)[0m  SELECT "tweets".* FROM "tweets"  ORDER BY "tweets"."created_at" DESC
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mFavorite Exists (0.0ms)[0m  SELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1  [["tweet_id", 1], ["user_id", 1]]
+  [1m[36mFollow Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1[0m  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_tweet.html.haml (2.4ms)
+  Rendered tweets/index.html.haml within layouts/application (9.1ms)
+  Rendered layouts/_header.html.haml (0.3ms)
+Completed 200 OK in 39ms (Views: 36.5ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/" for 192.168.0.134 at 2018-06-09 22:43:42 +0900
+Processing by RegistrationsController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Redirected to http://172.16.190.131:3200/tweets
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/tweets" for 192.168.0.134 at 2018-06-09 22:43:42 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?  [["user_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?[0m  [["follower_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?  [["inverse_follower_id", 1]]
+  Rendered tweets/_panel.html.haml (4.4ms)
+  [1m[36mTweet Load (0.1ms)[0m  [1mSELECT "tweets".* FROM "tweets"  ORDER BY "tweets"."created_at" DESC[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mFavorite Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1[0m  [["tweet_id", 1], ["user_id", 1]]
+  [1m[35mFollow Exists (0.0ms)[0m  SELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_tweet.html.haml (2.3ms)
+  Rendered tweets/index.html.haml within layouts/application (8.1ms)
+  Rendered layouts/_header.html.haml (0.4ms)
+Completed 200 OK in 51ms (Views: 49.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 192.168.0.134 at 2018-06-09 22:43:42 +0900
+Processing by RegistrationsController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Redirected to http://172.16.190.131:3200/tweets
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/tweets" for 192.168.0.134 at 2018-06-09 22:43:42 +0900
+Processing by TweetsController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?  [["follower_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?[0m  [["inverse_follower_id", 1]]
+  Rendered tweets/_panel.html.haml (4.7ms)
+  [1m[35mTweet Load (0.1ms)[0m  SELECT "tweets".* FROM "tweets"  ORDER BY "tweets"."created_at" DESC
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mFavorite Exists (0.1ms)[0m  SELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1  [["tweet_id", 1], ["user_id", 1]]
+  [1m[36mFollow Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1[0m  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_tweet.html.haml (2.4ms)
+  Rendered tweets/index.html.haml within layouts/application (8.5ms)
+  Rendered layouts/_header.html.haml (0.4ms)
+Completed 200 OK in 40ms (Views: 38.6ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/tweets" for 192.168.0.134 at 2018-06-09 22:43:58 +0900
+Processing by TweetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8ThfyDpMFlpbeu3S1UVnJG7xt0updDWRUqRtq1XuryuPFmpktzlN/G2REB9jXHBFSlJ9eDtWsO5wJY5GgRpIlg==", "tweet"=>{"content"=>"こんにちは！"}, "commit"=>"つぶやく"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "tweets" ("content", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["content", "こんにちは！"], ["user_id", 1], ["created_at", "2018-06-09 13:43:58.379251"], ["updated_at", "2018-06-09 13:43:58.379251"]]
+  [1m[36m (4.1ms)[0m  [1mcommit transaction[0m
+Redirected to http://172.16.190.131:3200/tweets
+Completed 302 Found in 7ms (ActiveRecord: 4.5ms)
+
+
+Started GET "/tweets" for 192.168.0.134 at 2018-06-09 22:43:58 +0900
+Processing by TweetsController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?  [["follower_id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?[0m  [["inverse_follower_id", 1]]
+  Rendered tweets/_panel.html.haml (3.3ms)
+  [1m[35mTweet Load (0.1ms)[0m  SELECT "tweets".* FROM "tweets"  ORDER BY "tweets"."created_at" DESC
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mFavorite Exists (0.0ms)[0m  SELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1  [["tweet_id", 2], ["user_id", 1]]
+  [1m[36mFollow Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1[0m  [["inverse_follower_id", 1], ["follower_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mFavorite Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1[0m  [["tweet_id", 1], ["user_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_tweet.html.haml (4.3ms)
+  Rendered tweets/index.html.haml within layouts/application (8.9ms)
+  Rendered layouts/_header.html.haml (0.4ms)
+Completed 200 OK in 72ms (Views: 70.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 22:43:58 +0900
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 22:43:58 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 22:43:58 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:58 +0900
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 22:43:58 +0900
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:58 +0900
+
+
+Started GET "/assets/turbolinks.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:58 +0900
+
+
+Started GET "/assets/registrations.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:58 +0900
+
+
+Started GET "/assets/sessions.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:58 +0900
+
+
+Started GET "/assets/settings.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:58 +0900
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:58 +0900
+
+
+Started GET "/assets/tweets.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:58 +0900
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.134 at 2018-06-09 22:43:58 +0900
+
+
+Started GET "/tweets/timeline" for 192.168.0.134 at 2018-06-09 22:44:01 +0900
+Processing by TweetsController#timeline as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?  [["user_id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?[0m  [["follower_id", 1]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?  [["inverse_follower_id", 1]]
+  Rendered tweets/_panel.html.haml (3.0ms)
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT "tweets"."id" AS t0_r0, "tweets"."user_id" AS t0_r1, "tweets"."content" AS t0_r2, "tweets"."created_at" AS t0_r3, "tweets"."updated_at" AS t0_r4, "users"."id" AS t1_r0, "users"."email" AS t1_r1, "users"."crypted_password" AS t1_r2, "users"."salt" AS t1_r3, "users"."created_at" AS t1_r4, "users"."updated_at" AS t1_r5, "users"."name" AS t1_r6, "users"."screen_name" AS t1_r7, "users"."bio" AS t1_r8, "follows"."id" AS t2_r0, "follows"."follower_id" AS t2_r1, "follows"."inverse_follower_id" AS t2_r2, "follows"."created_at" AS t2_r3, "follows"."updated_at" AS t2_r4 FROM "tweets" LEFT OUTER JOIN "users" ON "users"."id" = "tweets"."user_id" LEFT OUTER JOIN "follows" ON "follows"."inverse_follower_id" = "users"."id" WHERE "follows"."follower_id" = 1  ORDER BY "tweets"."created_at" DESC[0m
+  Rendered users/_tweet.html.haml (0.0ms)
+  Rendered tweets/timeline.html.haml within layouts/application (8.5ms)
+  Rendered layouts/_header.html.haml (0.4ms)
+Completed 200 OK in 40ms (Views: 38.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/tweets" for 192.168.0.134 at 2018-06-09 22:44:02 +0900
+Processing by TweetsController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?  [["follower_id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?[0m  [["inverse_follower_id", 1]]
+  Rendered tweets/_panel.html.haml (3.5ms)
+  [1m[35mTweet Load (0.1ms)[0m  SELECT "tweets".* FROM "tweets"  ORDER BY "tweets"."created_at" DESC
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mFavorite Exists (0.0ms)[0m  SELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1  [["tweet_id", 2], ["user_id", 1]]
+  [1m[36mFollow Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1[0m  [["inverse_follower_id", 1], ["follower_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mFavorite Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1[0m  [["tweet_id", 1], ["user_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_tweet.html.haml (4.3ms)
+  Rendered tweets/index.html.haml within layouts/application (9.1ms)
+  Rendered layouts/_header.html.haml (0.4ms)
+Completed 200 OK in 42ms (Views: 39.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/tweets" for 192.168.0.134 at 2018-06-09 22:44:04 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?  [["user_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?[0m  [["follower_id", 1]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?  [["inverse_follower_id", 1]]
+  Rendered tweets/_panel.html.haml (3.5ms)
+  [1m[36mTweet Load (0.1ms)[0m  [1mSELECT "tweets".* FROM "tweets"  ORDER BY "tweets"."created_at" DESC[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mFavorite Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1[0m  [["tweet_id", 2], ["user_id", 1]]
+  [1m[35mFollow Exists (0.0ms)[0m  SELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1  [["inverse_follower_id", 1], ["follower_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mFavorite Exists (0.0ms)[0m  SELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1  [["tweet_id", 1], ["user_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1[0m  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_tweet.html.haml (4.1ms)
+  Rendered tweets/index.html.haml within layouts/application (8.9ms)
+  Rendered layouts/_header.html.haml (0.3ms)
+Completed 200 OK in 39ms (Views: 37.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users" for 192.168.0.134 at 2018-06-09 22:44:05 +0900
+Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[35mFollow Exists (0.0ms)[0m  SELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_user.html.haml (1.1ms)
+  Rendered users/index.html.haml within layouts/application (1.8ms)
+  Rendered layouts/_header.html.haml (0.3ms)
+Completed 200 OK in 32ms (Views: 31.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/tweets" for 192.168.0.134 at 2018-06-09 22:44:06 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?  [["user_id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?[0m  [["follower_id", 1]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?  [["inverse_follower_id", 1]]
+  Rendered tweets/_panel.html.haml (3.2ms)
+  [1m[36mTweet Load (0.1ms)[0m  [1mSELECT "tweets".* FROM "tweets"  ORDER BY "tweets"."created_at" DESC[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mFavorite Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1[0m  [["tweet_id", 2], ["user_id", 1]]
+  [1m[35mFollow Exists (0.0ms)[0m  SELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1  [["inverse_follower_id", 1], ["follower_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mFavorite Exists (0.0ms)[0m  SELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1  [["tweet_id", 1], ["user_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1[0m  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_tweet.html.haml (4.1ms)
+  Rendered tweets/index.html.haml within layouts/application (8.7ms)
+  Rendered layouts/_header.html.haml (0.7ms)
+Completed 200 OK in 62ms (Views: 60.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 192.168.0.134 at 2018-06-09 22:44:06 +0900
+Processing by RegistrationsController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Redirected to http://172.16.190.131:3200/tweets
+Completed 302 Found in 5ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/tweets" for 192.168.0.134 at 2018-06-09 22:44:06 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "tweets" WHERE "tweets"."user_id" = ?  [["user_id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."inverse_follower_id" WHERE "follows"."follower_id" = ?[0m  [["follower_id", 1]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."inverse_follower_id" = ?  [["inverse_follower_id", 1]]
+  Rendered tweets/_panel.html.haml (3.1ms)
+  [1m[36mTweet Load (0.1ms)[0m  [1mSELECT "tweets".* FROM "tweets"  ORDER BY "tweets"."created_at" DESC[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mFavorite Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1[0m  [["tweet_id", 2], ["user_id", 1]]
+  [1m[35mFollow Exists (0.0ms)[0m  SELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1  [["inverse_follower_id", 1], ["follower_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mFavorite Exists (0.1ms)[0m  SELECT  1 AS one FROM "favorites" WHERE "favorites"."tweet_id" = ? AND "favorites"."user_id" = ? LIMIT 1  [["tweet_id", 1], ["user_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  1 AS one FROM "follows" WHERE "follows"."inverse_follower_id" = ? AND "follows"."follower_id" = ? LIMIT 1[0m  [["inverse_follower_id", 1], ["follower_id", 1]]
+  Rendered users/_tweet.html.haml (4.3ms)
+  Rendered tweets/index.html.haml within layouts/application (8.7ms)
+  Rendered layouts/_header.html.haml (0.3ms)
+Completed 200 OK in 39ms (Views: 38.0ms | ActiveRecord: 0.6ms)
+
+
+Started DELETE "/sessions" for 192.168.0.134 at 2018-06-09 22:44:11 +0900
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"kBhItGWF2rOQk13G2pJS0GCtaG4WAdKoxVgOaNWxLZHuNn0Y6PCBFaZ4oAtsi0WxRA6iXYQjV9fn2e2FAUXKLA=="}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Redirected to http://172.16.190.131:3200/
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 192.168.0.134 at 2018-06-09 22:44:11 +0900
+Processing by RegistrationsController#new as HTML
+  Rendered registrations/new.html.haml within layouts/registrations (0.9ms)
+Completed 200 OK in 30ms (Views: 29.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 22:44:11 +0900
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 22:44:11 +0900
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 22:44:11 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 22:44:11 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.0.134 at 2018-06-09 22:44:11 +0900
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.0.134 at 2018-06-09 22:44:11 +0900
+
+
+Started GET "/assets/turbolinks.js?body=1" for 192.168.0.134 at 2018-06-09 22:44:11 +0900
+
+
+Started GET "/assets/sessions.js?body=1" for 192.168.0.134 at 2018-06-09 22:44:11 +0900
+
+
+Started GET "/assets/registrations.js?body=1" for 192.168.0.134 at 2018-06-09 22:44:11 +0900
+
+
+Started GET "/assets/settings.js?body=1" for 192.168.0.134 at 2018-06-09 22:44:11 +0900
+
+
+Started GET "/assets/tweets.js?body=1" for 192.168.0.134 at 2018-06-09 22:44:11 +0900
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.134 at 2018-06-09 22:44:11 +0900
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.134 at 2018-06-09 22:44:11 +0900
+
+
+Started GET "/sessions/new" for 192.168.0.134 at 2018-06-09 22:44:24 +0900
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.haml within layouts/sessions (0.8ms)
+Completed 200 OK in 32ms (Views: 31.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 22:44:24 +0900
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 22:44:24 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 22:44:24 +0900
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 22:44:24 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.0.134 at 2018-06-09 22:44:24 +0900
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.0.134 at 2018-06-09 22:44:24 +0900
+
+
+Started GET "/assets/turbolinks.js?body=1" for 192.168.0.134 at 2018-06-09 22:44:24 +0900
+
+
+Started GET "/assets/sessions.js?body=1" for 192.168.0.134 at 2018-06-09 22:44:24 +0900
+
+
+Started GET "/assets/settings.js?body=1" for 192.168.0.134 at 2018-06-09 22:44:24 +0900
+
+
+Started GET "/assets/tweets.js?body=1" for 192.168.0.134 at 2018-06-09 22:44:24 +0900
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.134 at 2018-06-09 22:44:24 +0900
+
+
+Started GET "/assets/registrations.js?body=1" for 192.168.0.134 at 2018-06-09 22:44:24 +0900
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.134 at 2018-06-09 22:44:24 +0900
+
+
+Started GET "/" for 192.168.0.134 at 2018-06-09 22:51:39 +0900
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by RegistrationsController#new as HTML
+  Rendered registrations/new.html.haml within layouts/registrations (14.6ms)
+Completed 200 OK in 100ms (Views: 76.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/registrations.css?body=1" for 192.168.0.134 at 2018-06-09 22:51:39 +0900
+
+
+Started GET "/assets/sessions.css?body=1" for 192.168.0.134 at 2018-06-09 22:51:39 +0900
+
+
+Started GET "/assets/settings.css?body=1" for 192.168.0.134 at 2018-06-09 22:51:39 +0900
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.0.134 at 2018-06-09 22:51:39 +0900
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.134 at 2018-06-09 22:51:39 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.0.134 at 2018-06-09 22:51:39 +0900
+
+
+Started GET "/assets/turbolinks.js?body=1" for 192.168.0.134 at 2018-06-09 22:51:39 +0900
+
+
+Started GET "/assets/registrations.js?body=1" for 192.168.0.134 at 2018-06-09 22:51:39 +0900
+
+
+Started GET "/assets/sessions.js?body=1" for 192.168.0.134 at 2018-06-09 22:51:39 +0900
+
+
+Started GET "/assets/settings.js?body=1" for 192.168.0.134 at 2018-06-09 22:51:39 +0900
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.134 at 2018-06-09 22:51:39 +0900
+
+
+Started GET "/assets/tweets.js?body=1" for 192.168.0.134 at 2018-06-09 22:51:39 +0900
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.134 at 2018-06-09 22:51:39 +0900
+
+
+Started GET "/assets/back.jpg" for 192.168.0.134 at 2018-06-09 22:51:39 +0900
